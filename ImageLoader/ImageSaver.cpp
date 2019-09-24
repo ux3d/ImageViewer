@@ -117,6 +117,20 @@ bool save_ktx(const char* filename)
 	return true;
 }
 
+bool save_ktx2(const char* filename)
+{
+    try
+    {
+        // TODO: Implement.
+    }
+    catch (const std::exception& e)
+    {
+        set_error(e.what());
+        return false;
+    }
+    return true;
+}
+
 bool save_dds(const char* filename)
 {
 	try

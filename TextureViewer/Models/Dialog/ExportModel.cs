@@ -23,6 +23,7 @@ namespace TextureViewer.Models.Dialog
             Pfm,
             Jpg,
             Ktx,
+            Ktx2,
             Dds
         }
 
@@ -62,7 +63,7 @@ namespace TextureViewer.Models.Dialog
                     break;
                 case FileFormat.Dds:
                 case FileFormat.Ktx:
-                    for(int i = (int)GliFormat.FORMAT_FIRST; i <= (int)GliFormat.LAST; ++i)
+                    for (int i = (int)GliFormat.FORMAT_FIRST; i <= (int)GliFormat.LAST; ++i)
                     {
                         var format = (GliFormat)i;
                         if (!Gli.IsSupported(format))
@@ -73,6 +74,9 @@ namespace TextureViewer.Models.Dialog
                         if (!imgf.IsCompressed)
                             supportedFormats.Add(new DisplayedFormat(imgf, format.ToString()));
                     }
+                    break;
+                case FileFormat.Ktx2:
+                    // TODO: Implement.
                     break;
                 case FileFormat.Jpg:
                     supportedFormats.Add(new DisplayedFormat(new ImageLoader.ImageFormat(PixelFormat.Red, PixelType.UnsignedByte, true), "Red"));

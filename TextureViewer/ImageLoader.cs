@@ -68,6 +68,10 @@ namespace TextureViewer
 
         [DllImport(DllFilePath, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool save_ktx2(string filename);
+
+        [DllImport(DllFilePath, CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool save_dds(string filename);
 
         [DllImport(DllFilePath, CallingConvention = CallingConvention.Cdecl)]
@@ -396,6 +400,12 @@ namespace TextureViewer
         public static void SaveKtx(string filename)
         {
             if (!save_ktx(filename))
+                throw new Exception("saving image failed: " + GetError());
+        }
+
+        public static void SaveKtx2(string filename)
+        {
+            if (!save_ktx2(filename))
                 throw new Exception("saving image failed: " + GetError());
         }
 

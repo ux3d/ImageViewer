@@ -48,7 +48,7 @@ namespace TextureViewer.Commands
             // open save file dialog
             var sfd = new SaveFileDialog
             {
-                Filter = "PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg|HDR (*.hdr)|*.hdr|Portable float map (*.pfm)|*.pfm|Khronos Texture (*.ktx)|*.ktx|DirectDraw Surface (*.dds)|*.dds",
+                Filter = "PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg|HDR (*.hdr)|*.hdr|Portable float map (*.pfm)|*.pfm|Khronos Texture (*.ktx)|*.ktx|Khronos Texture (*.ktx2)|*.ktx2|DirectDraw Surface (*.dds)|*.dds",
                 InitialDirectory = Properties.Settings.Default.ExportPath,
                 FileName = proposedFilename
             };
@@ -70,6 +70,8 @@ namespace TextureViewer.Commands
                 format = ExportModel.FileFormat.Jpg;
             else if (sfd.FileName.EndsWith(".ktx"))
                 format = ExportModel.FileFormat.Ktx;
+            else if (sfd.FileName.EndsWith(".ktx2"))
+                format = ExportModel.FileFormat.Ktx2;
             else if (sfd.FileName.EndsWith(".dds"))
                 format = ExportModel.FileFormat.Dds;
 
@@ -92,6 +94,7 @@ namespace TextureViewer.Commands
                         texFormat.ExternalFormat = PixelFormat.Red;
                     break;
                 case ExportModel.FileFormat.Ktx:
+                case ExportModel.FileFormat.Ktx2:
                 case ExportModel.FileFormat.Dds:
                     // load default format from settings
                     if (Enum.TryParse<GliFormat>(Properties.Settings.Default.GliFormat, out var fmt))
@@ -126,7 +129,7 @@ namespace TextureViewer.Commands
                     if (texture == null)
                         throw new Exception("texture is not computed");
 
-                    if (info.FileType == ExportModel.FileFormat.Ktx || info.FileType == ExportModel.FileFormat.Dds)
+                    if (info.FileType == ExportModel.FileFormat.Ktx || info.FileType == ExportModel.FileFormat.Ktx2 || info.FileType == ExportModel.FileFormat.Dds)
                         SaveMultipleLevel(info, texture);
                     else
                         SaveSingleLevel(info, texture);
@@ -229,6 +232,8 @@ namespace TextureViewer.Commands
             // save texture
             if (info.FileType == ExportModel.FileFormat.Ktx)
                 ImageLoader.SaveKtx(info.Filename);
+            else if (info.FileType == ExportModel.FileFormat.Ktx2)
+                ImageLoader.SaveKtx2(info.Filename);
             else if (info.FileType == ExportModel.FileFormat.Dds)
                 ImageLoader.SaveDDS(info.Filename);
         }

@@ -47,7 +47,11 @@ int open(const char* filename)
 		{
 			res = gli_load(filename);
 		}
-		else if (hasEnding(fname, ".exr"))
+        else if (hasEnding(fname, ".ktx2"))
+        {
+            // TODO: Implement.
+        }
+        else if (hasEnding(fname, ".exr"))
 		{
 			res = openexr_load(filename);
 		}
