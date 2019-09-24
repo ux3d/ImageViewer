@@ -4,6 +4,7 @@
 #include "ImageResource.h"
 #include "stb_loader.h"
 #include "gli_loader.h"
+#include "ktx2_loader.h"
 #include "Pfm.h"
 #include <algorithm>
 #include <fstream>
@@ -49,7 +50,7 @@ int open(const char* filename)
 		}
         else if (hasEnding(fname, ".ktx2"))
         {
-            // TODO: Implement.
+            res = ktx2_load(filename);
         }
         else if (hasEnding(fname, ".exr"))
 		{

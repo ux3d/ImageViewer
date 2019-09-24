@@ -4,6 +4,7 @@
 #include "ImageLoader.h"
 #include "stb_loader.h"
 #include "gli_loader.h"
+#include "ktx2_loader.h"
 
 bool save_png(const char* filename, int width, int height, int components, const void* data)
 {
@@ -121,7 +122,7 @@ bool save_ktx2(const char* filename)
 {
     try
     {
-        // TODO: Implement.
+        ktx2_save(filename);
     }
     catch (const std::exception& e)
     {

@@ -234,6 +234,7 @@
     <ClInclude Include="ImageMipmap.h" />
     <ClInclude Include="ImageResource.h" />
     <ClInclude Include="ImageSaver.h" />
+    <ClInclude Include="ktx2_loader.h" />
     <ClInclude Include="openexr.h" />
     <ClInclude Include="Pfm.h" />
     <ClInclude Include="stb_loader.h" />
@@ -242,6 +243,7 @@
     <ClCompile Include="gli_loader.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="ImageSaver.cpp" />
+    <ClCompile Include="ktx2_loader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="openexr.cpp" />
     <ClCompile Include="Pfm.cpp" />
